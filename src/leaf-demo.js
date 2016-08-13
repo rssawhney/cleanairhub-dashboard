@@ -1,5 +1,4 @@
-// See post: http://asmaloney.com/2015/06/code/clustering-markers-on-leaflet-maps
-
+'use strict';
 var map = L.map( 'map', {
     center: [0.0, 0.0],
     minZoom: 2,
@@ -23,19 +22,30 @@ var myIcon = L.icon({
 
 var markerClusters = L.markerClusterGroup();
 
-for ( var i = 0; i < markers.results.length; ++i )
-{
-    var popup = markers.results[i].location +
-        '<br/>' + markers.results[i].city +
-        '<br/><b>Country:</b> ' + markers.results[i].country +
-        '<br/><b>SourceName:</b> ' + markers.results[i].sourceName;
-        // '<br/><b>Altitude:</b> ' + Math.round( markers[i].alt * 0.3048 ) + ' m' +
-        // '<br/><b>Timezone:</b> ' + markers[i].tz;
+fetch('https://api.openaq.org/v1/locations?limit=10000&has_geo=true')
+    .then(function(response) {
+        return response.json()
+    }).then(function(json) {
+    console.log('parsed json', json)
+    var responseJson = json;
+    for ( var i = 0; i < responseJson.results.length; ++i )
+    {
+        var popup = responseJson.results[i].location +
+            '<br/><b>City:</b>' + responseJson.results[i].city +
+            '<br/><b>Country:</b> ' + responseJson.results[i].country +
+            '<br/><b>Source Name:</b> ' + responseJson.results[i].sourceName +
+            '<br/><b>Count:</b> ' + responseJson.results[i].count +
+            '<br/><b>Last Updated:</b> ' + responseJson.results[i].lastUpdated +
+            '<br/><b>First Updated:</b> ' + responseJson.results[i].firstUpdated;
 
-    var m = L.marker( [markers.results[i].coordinates.latitude, markers.results[i].coordinates.longitude], {icon: myIcon} )
-        .bindPopup( popup );
+        var m = L.marker( [responseJson.results[i].coordinates.latitude, responseJson.results[i].coordinates.longitude], {icon: myIcon} )
+            .bindPopup( popup );
 
-    markerClusters.addLayer( m );
-}
+        markerClusters.addLayer( m );
+    }
+}).catch(function(ex) {
+    console.log('parsing failed', ex)
+})
+
 
 map.addLayer( markerClusters );
