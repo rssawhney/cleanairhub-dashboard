@@ -1,35 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Leaflet Cluster Example</title>
+    <title>Dashboard | Clean Air Hub</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css" />
+    <!--<link rel="stylesheet" type="text/css" href="https://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />-->
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.5.0/MarkerCluster.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.5.0/MarkerCluster.Default.css" />
 
     <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
-    <script type='text/javascript' src='https://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js'></script>
-    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js'></script>
+    <!--<script type='text/javascript' src='https://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js'></script>-->
+    <script type='text/javascript' src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.5.0/leaflet.markercluster-src.js'></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.5.0/leaflet.markercluster.js'></script>
 </head>
 
 <body>
-<h1>Leaflet Cluster Example</h1>
-
-<p>Here's an interactive map indicating where airports and train stations are located around the world.  The data comes from <a href="http://openflights.org/data.html" target="_blank">OpenFlights.org</a>.
+<h1>Dashboard</h1>
 
 <div id="map" style="width: 800px; height: 500px; border: 1px solid #AAA;"></div>
+<br>
+<br>
+<div id="data">Data</div>
 
-<div>
-    <p>An example of how to use <a href="https://github.com/Leaflet/Leaflet.markercluster" target="_blank">Leaflet.markercluster</a>.
-    <p>From the article <a href="https://asmaloney.com/2015/06/code/clustering-markers-on-leaflet-maps" target="_blank">Clustering Markers On Leaflet Maps</a>
-    <p>Andy Maloney // <a href="https://asmaloney.com" target="_blank">asmaloney.com</a>
-        <br/>10 June 2015
-
-    <p><b>[16 Jul 2016]</b> Switched to Leaflet 0.7.7.
-</div>
 <script type='text/javascript' src='src/fetch.js'></script>
 <!--<script type='text/javascript' src='src/markers.js'></script>-->
-<script type='text/javascript' src='src/leaf-demo.js'></script>
+<script type='text/javascript' src='src/leaflet-map.js'></script>
 </body>
 </html>
