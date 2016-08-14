@@ -48,7 +48,7 @@ fetch('https://api.openaq.org/v1/locations?limit=10000&has_geo=true')
         m.on('popupopen', function(e) {
             var marker = this._latlng;
             console.log(marker);
-            marker = marker.toString();
+            marker = marker.toString().replace(/[^0-9\,\.\-]/g,'');
             console.log(marker);
             var fetchUrl = 'https://api.openaq.org/v1/latest?limit=10000&has_geo=true&radius=1&coordinates=' + marker;
             console.log(fetchUrl);
@@ -58,7 +58,18 @@ fetch('https://api.openaq.org/v1/locations?limit=10000&has_geo=true')
                     return response.json();
                 }).then(function(dataJson) {
                 console.log('parsed json', dataJson);
-                document.getElementById("data").innerHTML = dataJson;
+                // document.getElementById("data").innerHTML =
+                var whitespace = ' ';
+                document.getElementById("parameter").innerHTML = '';
+                document.getElementById("value").innerHTML = '';
+                document.getElementById("unit").innerHTML = '';
+                document.getElementById("lastUpdated").innerHTML = '';
+                dataJson.results[0].measurements.forEach(function (measurement) {
+                    document.getElementById("parameter").innerHTML += whitespace + measurement.parameter;
+                    document.getElementById("value").innerHTML += whitespace + measurement.value;
+                    document.getElementById("unit").innerHTML += whitespace + measurement.unit;
+                    document.getElementById("lastUpdated").innerHTML += whitespace + measurement.lastUpdated;
+                });
             }).catch(function(ex) {
                 console.log('parsing failed', ex);
             });
