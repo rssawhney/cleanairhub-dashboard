@@ -2,11 +2,25 @@
 var map = L.map( 'map', {
     center: [0.0, 0.0],
     minZoom: 1,
-    zoom: 1
+    zoom: 1,
+    // true by default, false if you want a wild map
+    sleep: true,
+    // time(ms) for the map to fall asleep upon mouseout
+    sleepTime: 750,
+    // time(ms) until map wakes on mouseover
+    wakeTime: 750,
+    // defines whether or not the user is prompted oh how to wake map
+    sleepNote: true,
+    // allows ability to override note styling
+    sleepNoteStyle: { color: 'red' },
+    // should hovering wake the map? (clicking always will)
+    hoverToWake: true,
+    // opacity (between 0 and 1) of inactive map
+    sleepOpacity: .7
 });
 
-L.tileLayer( 'https://api.mapbox.com/styles/v1/mapbox/streets-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+L.tileLayer( 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="//openstreetmap.org">OpenStreetMap</a> contributors, <a href="//creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="//mapbox.com">Mapbox</a>',
     maxZoom: 18,
     id: 'nfsug007.142k19g5',
     accessToken: 'pk.eyJ1IjoibmZzdWcwMDciLCJhIjoiY2lybHczM2dyMDA1dGZrbTZyZ2s3dDEwbSJ9.2aPrUOjRujV5CQ14Agwl6g'
